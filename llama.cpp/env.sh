@@ -3,13 +3,13 @@
 pushd $(dirname ${BASH_SOURCE[0]})
 
 if [ "$LLAMA_IMAGE" == "" ]; then
-  LLAMA_IMAGE=docker.io/mixa3607/llama.cpp-gfx906
-  #LLAMA_IMAGE=registry.arkprojects.space/apps/llama.cpp-gfx906
+  LLAMA_IMAGE=docker.io/mixa3607/llama.cpp-gfx900
+  #LLAMA_IMAGE=registry.arkprojects.space/apps/llama.cpp-gfx900
 fi
 
 # rocm ver
 if [ "$LLAMA_ROCM_VERSION" == "" ]; then
-  LLAMA_ROCM_VERSION=7.0.0
+  LLAMA_ROCM_VERSION=7.2.1
 fi
 
 if [ "$LLAMA_GIT_REF" == "" ]; then

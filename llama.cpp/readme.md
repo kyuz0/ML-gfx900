@@ -1,7 +1,7 @@
-# llama.cpp GFX906
+# llama.cpp GFX900
 LLM inference in C/C++ https://github.com/ggml-org/llama.cpp
 
-Recommend use `docker.io/mixa3607/llama.cpp-gfx906:7.0.0-complete`
+Recommend use `docker.io/mixa3607/llama.cpp-gfx900:7.2.1-complete`
 
 Also see [llamacpp-offload-calculator](./llamacpp-offload-calculator/readme.md)
 

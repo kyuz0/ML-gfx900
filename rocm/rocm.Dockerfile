@@ -1,4 +1,4 @@
-ARG ROCM_ARCH="gfx906"
+ARG ROCM_ARCH="gfx900"
 ARG BASE_ROCM_IMAGE="rocm/dev-ubuntu-24.04:6.4.4-complete"
 ARG ROCBLAS_REPO="https://github.com/ROCm/rocBLAS"
 ARG TENSILE_REPO="https://github.com/ROCm/Tensile"

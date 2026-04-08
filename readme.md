@@ -1,8 +1,8 @@
-# ML software for deprecated GFX906 arch
+# ML software for deprecated GFX900 arch
 
 ## Docs
 
-https://arkprojects.space/wiki/AMD_GFX906
+https://arkprojects.space/wiki/AMD_GFX900
 
 ## Prebuild images
 
@@ -11,7 +11,7 @@ https://arkprojects.space/wiki/AMD_GFX906
 | Name         | About                | Status | Docs                               |
 | ------------ | -------------------- | ------ | ---------------------------------- |
 | ROCm         | ROCm patched images  | OK     | [readme](./rocm/readme.md)         |
-| ROCm-tensile | gfx906 tensile files | OK     | [readme](./rocm-tensile/readme.md) |
+| ROCm-tensile | gfx900 tensile files | OK     | [readme](./rocm-tensile/readme.md) |
 | PyTorch      | PyTorch images       | OK     | [readme](./pytorch/readme.md)      |
 | llama.cpp    | llama.cpp images     | OK     | [readme](./llama.cpp/readme.md)    |
 | ComfyUI      | ComfyUI images       | OK     | [readme](./comfyui/readme.md)      |
@@ -19,46 +19,46 @@ https://arkprojects.space/wiki/AMD_GFX906
 
 | Project   | Image                                                       |
 | --------- | ----------------------------------------------------------- |
-| ROCm      | `docker.io/mixa3607/rocm-gfx906:6.3.3-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:6.4.4-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.0.0-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.0.2-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.1.0-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.1.1-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.2.0-complete`             |
-|           | `docker.io/mixa3607/rocm-gfx906:7.2.1-complete`             |
+| ROCm      | `docker.io/mixa3607/rocm-gfx900:6.3.3-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:6.4.4-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.0.0-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.0.2-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.1.0-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.1.1-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.2.0-complete`             |
+|           | `docker.io/mixa3607/rocm-gfx900:7.2.1-complete`             |
 | --------- | ----------------------------------------------------------- |
-| PyTorch   | `docker.io/mixa3607/pytorch-gfx906:v2.7.1-rocm-6.4.4`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.7.1-rocm-6.3.3`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.8.0-rocm-6.4.4`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.8.0-rocm-6.3.3`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.9.0-rocm-6.4.4`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.9.0-rocm-6.3.3`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.9.0-rocm-7.0.2`       |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.10.0-rocm-6.3.3`      |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.10.0-rocm-7.2.0`      |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.11.0-rocm-6.3.3`      |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.11.0-rocm-7.2.0`      |
-|           | `docker.io/mixa3607/pytorch-gfx906:v2.11.0-rocm-7.2.1`      |
+| PyTorch   | `docker.io/mixa3607/pytorch-gfx900:v2.7.1-rocm-6.4.4`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.7.1-rocm-6.3.3`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.8.0-rocm-6.4.4`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.8.0-rocm-6.3.3`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.9.0-rocm-6.4.4`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.9.0-rocm-6.3.3`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.9.0-rocm-7.0.2`       |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.10.0-rocm-6.3.3`      |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.10.0-rocm-7.2.0`      |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.11.0-rocm-6.3.3`      |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.11.0-rocm-7.2.0`      |
+|           | `docker.io/mixa3607/pytorch-gfx900:v2.11.0-rocm-7.2.1`      |
 | --------- | ----------------------------------------------------------- |
-| ComfyUI   | `docker.io/mixa3607/comfyui-gfx906:v0.18.1-rocm-6.3.3`      |
-|           | `docker.io/mixa3607/comfyui-gfx906:v0.18.1-rocm-7.2.1`      |
+| ComfyUI   | `docker.io/mixa3607/comfyui-gfx900:v0.18.1-rocm-6.3.3`      |
+|           | `docker.io/mixa3607/comfyui-gfx900:v0.18.1-rocm-7.2.1`      |
 | --------- | ----------------------------------------------------------- |
-| vLLM      | `docker.io/mixa3607/vllm-gfx906:0.19.1-rocm-6.3.3-aiinfos`  |
-|           | `docker.io/mixa3607/vllm-gfx906:0.19.1-rocm-7.2.1-aiinfos`  |
+| vLLM      | `docker.io/mixa3607/vllm-gfx900:0.19.1-rocm-6.3.3-aiinfos`  |
+|           | `docker.io/mixa3607/vllm-gfx900:0.19.1-rocm-7.2.1-aiinfos`  |
 | --------- | ----------------------------------------------------------- |
-| llama.cpp | `docker.io/mixa3607/llama.cpp-gfx906:full-b8667-rocm-6.3.3` |
-|           | `docker.io/mixa3607/llama.cpp-gfx906:full-b8667-rocm-7.2.1` |
+| llama.cpp | `docker.io/mixa3607/llama.cpp-gfx900:full-b8667-rocm-6.3.3` |
+|           | `docker.io/mixa3607/llama.cpp-gfx900:full-b8667-rocm-7.2.1` |
 
 ### Deps graph
 
 ```mermaid
 flowchart TD
-  rocm-src[docker.io/rocm/dev-ubuntu-24.04] --> rocm[docker.io/mixa3607/rocm-gfx906]
-  rocm --> llama[docker.io/mixa3607/llama.cpp-gfx906]
-  rocm --> torch[docker.io/mixa3607/pytorch-gfx906]
-  torch --> comfyui[docker.io/mixa3607/comfyui-gfx906]
-  torch --> vllm[docker.io/mixa3607/vllm-gfx906]
+  rocm-src[docker.io/rocm/dev-ubuntu-24.04] --> rocm[docker.io/mixa3607/rocm-gfx900]
+  rocm --> llama[docker.io/mixa3607/llama.cpp-gfx900]
+  rocm --> torch[docker.io/mixa3607/pytorch-gfx900]
+  torch --> comfyui[docker.io/mixa3607/comfyui-gfx900]
+  torch --> vllm[docker.io/mixa3607/vllm-gfx900]
 ```
 
 ## RVS

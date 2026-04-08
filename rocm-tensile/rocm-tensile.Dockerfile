@@ -1,5 +1,5 @@
-ARG ROCM_IMAGE="docker.io/mixa3607/rocm-gfx906:6.3.3-complete"
-ARG ROCM_ARCH="gfx906"
+ARG ROCM_IMAGE="docker.io/mixa3607/rocm-gfx900:7.2.1-complete"
+ARG ROCM_ARCH="gfx900"
 
 ############# Copy files #############
 FROM ${ROCM_IMAGE} AS rocm_files

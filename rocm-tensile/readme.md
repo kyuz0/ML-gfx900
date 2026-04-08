@@ -4,7 +4,7 @@ Extracted from ../rocm images
 
 ### Github limitations
 
-Due to GitHub file size limitations, artifacts are hosted at [static.arkprojects.space](https://static.arkprojects.space/public-data/wiki/AMD-GFX906/rocm-tensile/) and in release [github: rocm-tensile-files](https://github.com/mixa3607/ML-gfx906/releases/tag/rocm-tensile-files)
+Due to GitHub file size limitations, artifacts are hosted at [static.arkprojects.space](https://static.arkprojects.space/public-data/wiki/AMD-GFX900/rocm-tensile/) and in release [github: rocm-tensile-files](https://github.com/mixa3607/ML-gfx900/releases/tag/rocm-tensile-files)
 
 ### [static.arkprojects.space](https://static.arkprojects.space/public-data/wiki/AMD-GFX906/rocm-tensile/):
 - [tensile-files-6.3.3.tgz](https://static.arkprojects.space/public-data/wiki/AMD-GFX906/rocm-tensile/tensile-files-6.3.3.tgz)

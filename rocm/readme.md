@@ -1,12 +1,12 @@
-# ROCm GFX906
+# ROCm GFX900
 Open software stack that includes programming models, tools, compilers, libraries, and runtimes for AI and HPC solution development on AMD GPUs.
-In 6.4+ gfx906 support was dropped but may be manually compiled.
+In 6.4+ gfx900 support was dropped but may be manually compiled.
 
 At this moment rebuild:
 - rccl
 - rocblas+tensile
 
-Recommend use `docker.io/mixa3607/rocm-gfx906:6.4.4-complete`
+Recommend use `docker.io/mixa3607/rocm-gfx900:7.2.1-complete`
 
 ## Run
 ### Docker
@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: rocmdev
-          image: docker.io.mixa3607/rocm-gfx906:7.0.0-20251005035204-complete
+          image: docker.io/mixa3607/rocm-gfx900:7.2.1-complete
           imagePullPolicy: Always
           securityContext:
             privileged: true
@@ -53,14 +53,14 @@ See build vars in `./env.sh`. You also may use presetis `./preset.rocm-*.sh`. Ex
 ```bash
 $ . preset.rocm-7.0.0.sh
 $ ./build-and-push.rocm.sh
-~/REPOS/mixa3607/llama.cpp-gfx906/rocm ~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/llama.cpp ~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/comfyui ~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/vllm ~/REPOS/mixa3607/llama.cpp-gfx906/rocm
-~/REPOS/mixa3607/llama.cpp-gfx906/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/rocm ~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/llama.cpp ~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/comfyui ~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/vllm ~/REPOS/mixa3607/llama.cpp-gfx900/rocm
+~/REPOS/mixa3607/llama.cpp-gfx900/rocm
 #0 building with "remote" instance using remote driver
 
 #1 [internal] load build definition from rocm.Dockerfile
