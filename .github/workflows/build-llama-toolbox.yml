@@ -2,10 +2,6 @@ name: Build and Push llama.cpp Toolbox
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'llama.cpp/**'
-      - '.github/workflows/build-llama-toolbox.yml'
 
 jobs:
   build-toolbox:
