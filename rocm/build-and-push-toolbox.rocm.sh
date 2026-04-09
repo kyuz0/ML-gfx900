@@ -15,6 +15,7 @@ for VERSION in "${VERSIONS[@]}"; do
   
   # Load the preset
   source preset.rocm-${VERSION}.sh
+  source ../env.sh "rocm"
 
   # Build the base image locally first (so it's guaranteed to be up-to-date and patched for gfx900)
   # This delegates to the script we made earlier

@@ -22,7 +22,7 @@ fi
 
 # destination image
 if [ "$PATCHED_ROCM_IMAGE" == "" ]; then
-  PATCHED_ROCM_IMAGE=docker.io/mixa3607/rocm-gfx900
+  PATCHED_ROCM_IMAGE=docker.io/kyuz0/rocm-gfx900
 fi
 
 popd
