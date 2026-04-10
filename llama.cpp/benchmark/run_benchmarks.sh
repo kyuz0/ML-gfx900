@@ -40,7 +40,14 @@ for MODEL_PATH in "${MODEL_PATHS[@]}"; do
     DIR="$(dirname "$MODEL_PATH")"
     BASE="$(basename "$MODEL_PATH")"
     PATTERN="${BASE/-00001-of-/-*-of-}"
-    MODEL_SIZE=$(find "$DIR" -maxdepth 1 -name "$PATTERN" -exec stat -c%s {} + | awk '{s+=$1} END {print s}')
+    # Pure bash addition to avoid `awk` scientific notation formatting bugs
+    MODEL_SIZE=0
+    for file in "$DIR"/$PATTERN; do
+      if [[ -f "$file" ]]; then
+        size=$(stat -c%s "$file")
+        ((MODEL_SIZE+=size))
+      fi
+    done
   else
     # Single-file model
     MODEL_SIZE=$(stat -c%s "$MODEL_PATH")
