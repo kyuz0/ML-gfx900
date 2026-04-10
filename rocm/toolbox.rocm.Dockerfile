@@ -14,4 +14,5 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -f /etc/machine-id && touch /etc/machine-id \
-    && userdel -r ubuntu || true
+    && userdel -r ubuntu || true \
+    && sed -i 's/^hosts:.*/& myhostname/' /etc/nsswitch.conf

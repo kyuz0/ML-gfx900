@@ -53,7 +53,12 @@ RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/local.conf \
 
 WORKDIR /usr/local/bin
 RUN pip install --break-system-packages --upgrade setuptools \
-    && pip install --break-system-packages -r requirements.txt
+    && pip install --break-system-packages -r requirements.txt \
+    && pip install --break-system-packages questionary rich "huggingface_hub[cli]" hf_transfer
+
+COPY ./hf_models.json /opt/hf_models.json
+COPY ./get_models.py /usr/local/bin/get_models
+RUN chmod +x /usr/local/bin/get_models
 
 # Reset the entrypoint cleanly for toolbox shell behavior
 ENTRYPOINT []
