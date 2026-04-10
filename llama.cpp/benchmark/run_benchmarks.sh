@@ -27,7 +27,7 @@ echo
 
 declare -A CMDS=(
   [rocm6_4_4]="toolbox run -c llama-rocm-6.4.4 -- /usr/local/bin/llama-bench"
-  [rocm7_2_1]="toolbox run -c llama-rocm-7.2.1 -- /usr/local/bin/llama-bench"
+  [rocm7_2_1]="toolbox run -c llama-rocm-7.2 -- /usr/local/bin/llama-bench"
 )
 
 get_hblt_modes() {
