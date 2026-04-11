@@ -3,7 +3,7 @@
 pushd $(dirname ${BASH_SOURCE[0]})
 
 # rocm version
-if [ "$TORCH_ROCM_VERSION" == "" ];  then TORCH_ROCM_VERSION="6.3.3"; fi
+if [ "$TORCH_ROCM_VERSION" == "" ];  then TORCH_ROCM_VERSION="7.2.1"; fi
 # torch git checkpoint
 if [ "$TORCH_VERSION" == "" ];       then TORCH_VERSION="v2.7.1"; fi
 
