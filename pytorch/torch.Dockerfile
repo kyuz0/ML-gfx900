@@ -1,5 +1,5 @@
-ARG BASE_ROCM_IMAGE="docker.io/mixa3607/vllm-gfx906:latest"
-ARG ROCM_ARCH="gfx906"
+ARG BASE_ROCM_IMAGE="docker.io/kyuz0/rocm-toolbox-gfx900:7.2.1"
+ARG ROCM_ARCH="gfx900"
 ARG PYTHON_VERSION="3.12"
 
 ARG PYTORCH_REPO="https://github.com/pytorch/pytorch.git"

@@ -9,7 +9,7 @@ if [ "$TORCH_VERSION" == "" ];       then TORCH_VERSION="v2.7.1"; fi
 
 # destination image
 if [ "$TORCH_IMAGE" == "" ]; then
-  TORCH_IMAGE="docker.io/mixa3607/pytorch-gfx906"
+  TORCH_IMAGE="docker.io/kyuz0/pytorch-toolbox-gfx900"
 fi
 
 popd

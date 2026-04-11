@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import sys
+import re
 
 try:
     import questionary
@@ -65,8 +66,12 @@ def main():
                 # It's in a subfolder (e.g., "BF16")
                 quants.add(parts[0])
             else:
-                # Top level file
-                quants.add(f)
+                # Top level file: Check if it's a shard (e.g. -00001-of-00005)
+                if "-000" in f and "-of-000" in f:
+                    grouped_pattern = re.sub(r"-000\d+-of-000\d+\.gguf$", "-*-of-*.gguf", f)
+                    quants.add(grouped_pattern)
+                else:
+                    quants.add(f)
                 
     if not quants:
         console.print("[bold yellow]No .gguf files found in this repository![/bold yellow]")
