@@ -131,4 +131,10 @@ RUN --mount=type=bind,from=build_vllm,src=/app/vllm/requirements/,target=/app/vl
     pip3 cache purge && \
     true
 
+# 🚨 Vega10 LDS fix: BLOCK_M 128→64 in the V1 attention Triton kernel.
+# The default BLOCK_M=128 produces 81920 bytes of shared memory, exceeding
+# gfx900's 64KB (65536 byte) LDS hardware limit. This halves it to ~49KB.
+RUN sed -i 's/BLOCK_M = 128/BLOCK_M = 64  # PATCHED for Vega10 LDS limit/' \
+    /usr/local/lib/python3.12/dist-packages/vllm/v1/attention/ops/prefix_prefill.py
+
 CMD ["/bin/bash"]
