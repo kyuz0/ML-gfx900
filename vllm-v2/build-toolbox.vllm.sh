@@ -1,5 +1,6 @@
 #/bin/bash
 set -e
+set -o pipefail
 
 cd $(dirname $0)
 source preset.0.19.1-rocm-7.2.1-aiinfos.sh

@@ -5,6 +5,7 @@ pushd $(dirname ${BASH_SOURCE[0]})
 if [ "$VLLM_IMAGE" == "" ]; then
   VLLM_IMAGE="docker.io/mixa3607/vllm-gfx906"
 fi
+if [ "$VLLM_MAX_JOBS" == "" ];              then VLLM_MAX_JOBS=16; fi
 
 if [ "$VLLM_PRESET_NAME" == "" ];           then VLLM_PRESET_NAME=default; fi
 # vllm git checkpoint
