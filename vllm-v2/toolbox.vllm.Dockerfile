@@ -73,7 +73,7 @@ RUN if [ "$VLLM_COMMIT" != "" ]; then git checkout "$VLLM_COMMIT"; fi
 # Patch
 COPY ./patch/${VLLM_PATCH} ./${VLLM_PATCH}
 RUN git apply ./${VLLM_PATCH} --allow-empty
-RUN sed -i 's/gfx906;/gfx900;gfx906;/g' cmake/utils.cmake || true
+RUN sed -i 's/gfx906/gfx900;gfx906/g' CMakeLists.txt || true
 
 FROM rocm_base AS files_extra
 ARG EXTRA_REQUIREMENTS
