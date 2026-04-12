@@ -2,6 +2,7 @@
 set -e
 
 cd $(dirname $0)
+source preset.0.19.1-rocm-7.2.1-aiinfos.sh
 source ../env.sh "vllm-v2" "pytorch"
 
 # legacy push check stripped out
