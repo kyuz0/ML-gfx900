@@ -42,7 +42,7 @@ ARG TRITON_COMMIT
 ARG TRITON_PATCH
 # Clone
 WORKDIR /app/triton
-RUN git clone --depth 1 --recurse-submodules --shallow-submodules --jobs 4 --branch ${TRITON_BRANCH} ${TRITON_REPO} .
+RUN git clone --recurse-submodules --shallow-submodules --jobs 4 --branch ${TRITON_BRANCH} ${TRITON_REPO} .
 RUN if [ "$TRITON_COMMIT" != "" ]; then git checkout "$TRITON_COMMIT"; fi
 # Patch
 COPY ./patch/${TRITON_PATCH} ./${TRITON_PATCH}
@@ -55,7 +55,7 @@ ARG FA_COMMIT
 ARG FA_PATCH
 # Clone
 WORKDIR /app/flash-attention
-RUN git clone --depth 1 --recurse-submodules --shallow-submodules --jobs 4 --branch ${FA_BRANCH} ${FA_REPO} .
+RUN git clone --recurse-submodules --shallow-submodules --jobs 4 --branch ${FA_BRANCH} ${FA_REPO} .
 RUN if [ "$FA_COMMIT" != "" ]; then git checkout "$FA_COMMIT"; fi
 # Patch
 COPY ./patch/${FA_PATCH} ./${FA_PATCH}
@@ -68,7 +68,7 @@ ARG VLLM_COMMIT
 ARG VLLM_PATCH
 # Clone
 WORKDIR /app/vllm
-RUN git clone --depth 1 --recurse-submodules --shallow-submodules --jobs 4 --branch ${VLLM_BRANCH} ${VLLM_REPO} .
+RUN git clone --recurse-submodules --shallow-submodules --jobs 4 --branch ${VLLM_BRANCH} ${VLLM_REPO} .
 RUN if [ "$VLLM_COMMIT" != "" ]; then git checkout "$VLLM_COMMIT"; fi
 # Patch
 COPY ./patch/${VLLM_PATCH} ./${VLLM_PATCH}
