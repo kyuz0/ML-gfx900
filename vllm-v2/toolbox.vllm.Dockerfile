@@ -1,6 +1,6 @@
 # Build seq: rocm_base => build_base => build_triton => build_fa => build_vllm => final
 
-ARG BASE_PYTORCH_IMAGE="docker.io/mixa3607/pytorch-gfx906:v2.10.0-rocm-6.3.3"
+ARG BASE_PYTORCH_IMAGE="docker.io/kyuz0/pytorch-toolbox-gfx900:v2.11.0-rocm-7.2.1"
 ARG MAX_JOBS=""
 ARG EXTRA_REQUIREMENTS="empty.txt"
 

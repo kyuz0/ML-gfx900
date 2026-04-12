@@ -1,4 +1,4 @@
-ARG BASE_ROCM_IMAGE="docker.io/kyuz0/rocm-toolbox-gfx900:6.4.4"
+ARG BASE_ROCM_IMAGE="docker.io/kyuz0/rocm-toolbox-gfx900:7.2.1"
 ARG ROCM_ARCH="gfx900"
 ARG PYTHON_VERSION="3.12"
 

@@ -31,6 +31,11 @@ podman build -t "${TOOLBOX_TAG}" \
   --build-arg PYTORCH_BRANCH="${TORCH_VERSION}" \
   --build-arg PYTORCH_MAX_JOBS="${TORCH_MAX_JOBS:-$(nproc)}" \
   --build-arg PYTORCH_VISION_BRANCH="${TORCH_VISION_VERSION}" \
-  --target final -f ./torch.Dockerfile ./build-context 2>&1 | tee ./logs/build_torch_toolbox_$(date +%Y%m%d%H%M%S).log
+  --target final \
+  -f ./torch.Dockerfile ./build-context \
+  2>&1 | tee ./logs/build_torch_toolbox_$(date +%Y%m%d%H%M%S).log
 
-echo "Build complete! The local PyTorch toolbox is ready and tagged as: ${TOOLBOX_TAG}"
+echo ">>> Pushing ${TOOLBOX_TAG} to Docker Hub..."
+podman push "${TOOLBOX_TAG}"
+
+echo "Build and push complete! The PyTorch toolbox is ready and synced remotely: ${TOOLBOX_TAG}"

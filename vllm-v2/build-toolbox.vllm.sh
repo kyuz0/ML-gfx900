@@ -4,23 +4,14 @@ set -e
 cd $(dirname $0)
 source ../env.sh "vllm-v2" "pytorch"
 
-IMAGE_TAGS=(
-  "${VLLM_IMAGE}:${VLLM_PRESET_NAME}-${REPO_GIT_REF}"
-  "${VLLM_IMAGE}:${VLLM_PRESET_NAME}"
-)
-
-if docker_image_pushed ${IMAGE_TAGS[0]}; then
-  echo "${IMAGE_TAGS[0]} already in registry. Skip"
-  exit 0
-fi
-
-DOCKER_EXTRA_ARGS=()
-for (( i=0; i<${#IMAGE_TAGS[@]}; i++ )); do
-  DOCKER_EXTRA_ARGS+=("-t" "${IMAGE_TAGS[$i]}")
-done
+# legacy push check stripped out
 
 mkdir -p ./logs
-docker buildx build ${DOCKER_EXTRA_ARGS[@]} --push \
+
+TOOLBOX_TAG="docker.io/kyuz0/vllm-toolbox-gfx900:${VLLM_PRESET_NAME}"
+echo ">>> Building vLLM Toolbox: ${TOOLBOX_TAG}"
+
+podman build -t "${TOOLBOX_TAG}" \
   --build-arg BASE_PYTORCH_IMAGE=${TORCH_IMAGE}:${VLLM_PYTORCH_VERSION}-rocm-${VLLM_ROCM_VERSION} \
   --build-arg MAX_JOBS="${VLLM_MAX_JOBS}" \
   --build-arg EXTRA_REQUIREMENTS="${VLLM_EXTRA_REQUIREMENTS}" \
@@ -40,4 +31,9 @@ docker buildx build ${DOCKER_EXTRA_ARGS[@]} --push \
   --build-arg TRITON_COMMIT=${VLLM_TRITON_COMMIT} \
   --build-arg TRITON_PATCH=${VLLM_TRITON_PATCH}   \
   \
-  --progress=plain --target final -f ./vllm.Dockerfile ./build-context 2>&1 | tee ./logs/build_$(date +%Y%m%d%H%M%S).log
+  --target final -f ./toolbox.vllm.Dockerfile ./build-context 2>&1 | tee ./logs/build_$(date +%Y%m%d%H%M%S).log
+
+echo ">>> Pushing ${TOOLBOX_TAG} to Docker Hub..."
+podman push "${TOOLBOX_TAG}"
+
+echo "Build and push complete! The vLLM toolbox is ready: ${TOOLBOX_TAG}"
