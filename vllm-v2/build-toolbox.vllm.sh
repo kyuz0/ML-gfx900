@@ -12,6 +12,9 @@ mkdir -p ./logs
 
 TOOLBOX_TAG="docker.io/kyuz0/vllm-toolbox-gfx900:${VLLM_PRESET_NAME}"
 echo ">>> Building vLLM Toolbox: ${TOOLBOX_TAG}"
+echo ">>> Staging TUI launcher scripts into build context..."
+mkdir -p ./build-context
+cp start_vllm.py models.py run_vllm_bench_mi25.py 99-toolbox-banner.sh ./build-context/
 
 podman build -t "${TOOLBOX_TAG}" \
   --build-arg BASE_PYTORCH_IMAGE=${TORCH_IMAGE}:${VLLM_PYTORCH_VERSION}-rocm-${VLLM_ROCM_VERSION} \
