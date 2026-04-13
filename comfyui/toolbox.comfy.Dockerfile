@@ -5,7 +5,7 @@ WORKDIR /opt
 
 # Core packages for UI and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget curl git ffmpeg vim dialog pciutils libgl1-mesa-glx libglib2.0-0 \
+    wget curl git ffmpeg vim dialog pciutils libgl1 libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # ComfyUI Checkout
