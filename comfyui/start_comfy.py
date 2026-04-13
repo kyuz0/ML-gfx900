@@ -57,8 +57,8 @@ def clear_caches():
 def configure_and_launch(gpu_count):
     current_gpu = "0"
     current_port = PORT
-    vram_preset = "normalvram"
-    force_fp16 = True
+    vram_preset = "lowvram"
+    force_fp16 = False
     do_clear_cache = False
 
     while True:

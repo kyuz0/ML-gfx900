@@ -22,7 +22,7 @@ if [[ -z "$HF" ]]; then
   exit 1
 fi
 
-mkdir -p "$MODEL_HOME"/{diffusion_models,text_encoders,vae}
+mkdir -p "$MODEL_HOME"/{diffusion_models,text_encoders,vae,loras}
 
 dl() {
   local repo="$1" remote="$2" dest_dir="$3"
@@ -73,17 +73,29 @@ dl "Comfy-Org/Qwen-Image_ComfyUI" \
 
 # --- Qwen-Image 2512 (text-to-image) ---
 echo ""
-echo ">>> [3/4] Qwen-Image 2512 UNet (Q4_K_M GGUF, ~11.5 GB)"
+echo ">>> [3/6] Qwen-Image 2512 UNet (Q4_K_M GGUF, ~11.5 GB)"
 dl "unsloth/Qwen-Image-2512-GGUF" \
    "qwen-image-2512-Q4_K_M.gguf" \
    "$MODEL_HOME/diffusion_models"
 
+echo ""
+echo ">>> [4/6] Qwen-Image 2512 Lightning LoRA (4-Step, ~3.5 GB)"
+dl "lightx2v/Qwen-Image-2512-Lightning" \
+   "Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors" \
+   "$MODEL_HOME/loras"
+
 # --- Qwen-Image-Edit 2511 (image editing) ---
 echo ""
-echo ">>> [4/4] Qwen-Image-Edit 2511 UNet (Q4_K_M GGUF, ~11.5 GB)"
+echo ">>> [5/6] Qwen-Image-Edit 2511 UNet (Q4_K_M GGUF, ~11.5 GB)"
 dl "unsloth/Qwen-Image-Edit-2511-GGUF" \
    "qwen-image-edit-2511-Q4_K_M.gguf" \
    "$MODEL_HOME/diffusion_models"
+
+echo ""
+echo ">>> [6/6] Qwen-Image-Edit 2511 Lightning LoRA (4-Step, ~3.5 GB)"
+dl "lightx2v/Qwen-Image-Edit-2511-Lightning" \
+   "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors" \
+   "$MODEL_HOME/loras"
 
 echo ""
 echo "============================================="
