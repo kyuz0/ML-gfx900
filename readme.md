@@ -21,9 +21,8 @@ The environments and benchmarks in this repository were tested on a system with 
 
 *To check your hardware, run `rocm-smi` and `lscpu` on your host.*
 
-## References
-These environments are adapted from MI50 (`gfx906`) container builds by [mixa3607/ML-gfx906](https://github.com/mixa3607/ML-gfx906). 
-These configurations mirror the setups established for the [Strix Halo Toolboxes](https://github.com/kyuz0/amd-strix-halo-toolboxes) and [R9700 Toolboxes](https://github.com/kyuz0/amd-r9700-toolboxes).
+### ❤️ Support
+This is a hobby project maintained in my spare time. If you find these toolboxes and tutorials useful, you can **[buy me a coffee](https://buymeacoffee.com/dcapitella)** to support the work! ☕
 
 ## Toolbox Details
 These configurations use Linux `toolbox` to run GPU workloads without modifying your host system. 
@@ -71,7 +70,7 @@ toolbox enter llama-gfx900-rocm7-2-1
 3. **Download Models:**
 Use the provided script to download models explicitly to your mapped host directory.
 ```bash
-python3 get_models.py
+get_models
 ```
 4. **Run Server:**
 ```bash
@@ -91,6 +90,7 @@ toolbox enter vllm-gfx900-0.19.1-rocm7-2-1
 3. **Download Models:**
 You can pre-fetch weights via the adjacent `llama.cpp` script, or allow vLLM to fetch them dynamically at runtime.
 4. **Run Server:**
+Execute the provided Python start script which automatically maps optimal hardware configurations.
 ```bash
 start-vllm
 ```
@@ -106,7 +106,8 @@ cd comfyui
 toolbox enter comfy-gfx900-latest
 ```
 
-3. **Set model paths:**
+3. **Set Model Paths (First Time Only):**
+Run this script once to generate the persistent model directory (`~/comfy-models`) on your host, and to configure ComfyUI to read weights from this external path rather than the container cache.
 ```bash
 /opt/set_extra_paths.sh
 ```
@@ -117,7 +118,7 @@ toolbox enter comfy-gfx900-latest
 ```
 5. **Run Server:**
 ```bash
-start_comfy
+start-comfy
 ```
 
 ---
@@ -173,3 +174,7 @@ To rebuild the PyTorch base image:
 cd pytorch
 bash build-toolbox.torch.sh
 ```
+
+## References
+These environments are adapted from MI50 (`gfx906`) container builds by [mixa3607/ML-gfx906](https://github.com/mixa3607/ML-gfx906). 
+These configurations mirror the setups established for the [Strix Halo Toolboxes](https://github.com/kyuz0/amd-strix-halo-toolboxes) and [R9700 Toolboxes](https://github.com/kyuz0/amd-r9700-toolboxes).
