@@ -137,4 +137,14 @@ RUN --mount=type=bind,from=build_vllm,src=/app/vllm/requirements/,target=/app/vl
 RUN sed -i 's/BLOCK_M = 128/BLOCK_M = 64  # PATCHED for Vega10 LDS limit/' \
     /usr/local/lib/python3.12/dist-packages/vllm/v1/attention/ops/prefix_prefill.py
 
+# Install utility packages
+RUN apt-get update && apt-get install -y dialog vim && rm -rf /var/lib/apt/lists/*
+
+# Install toolbox scripts
+COPY start_vllm.py models.py run_vllm_bench_mi25.py 99-toolbox-banner.sh /opt/
+RUN chmod +x /opt/start_vllm.py /opt/99-toolbox-banner.sh && \
+    ln -s /opt/start_vllm.py /usr/local/bin/start-vllm && \
+    ln -s /opt/run_vllm_bench_mi25.py /usr/local/bin/run-vllm-bench && \
+    echo "source /opt/99-toolbox-banner.sh" >> /root/.bashrc
+
 CMD ["/bin/bash"]

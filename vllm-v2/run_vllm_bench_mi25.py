@@ -6,14 +6,14 @@ from pathlib import Path
 # ⚙️ GLOBAL SETTINGS
 # =========================
 
-# HARDWARE: 4x AMD Radeon Instinct MI25 (16GB, Vega 10)
-GPU_UTIL = "0.90"  # 16GB MI25: 0.90 gives ~1.6 GiB headroom (0.95 only gives 0.8 GiB)
+from models import GPU_UTIL, MODEL_TABLE, MODELS_TO_RUN
+
 PORT     = 8000
 HOST     = "127.0.0.1"
 
 # BENCHMARK TOGGLES
 # AITER is disabled/removed.
- 
+
 
 # 1. THROUGHPUT CONFIG
 OFF_NUM_PROMPTS      = 100  # 100 is enough for stable throughput measurement
@@ -32,71 +32,6 @@ FALLBACK_OUTPUT_LEN = 512
 RESULTS_DIR = Path("benchmark_results")
 RESULTS_DIR.mkdir(exist_ok=True)
 
-# =========================
-# 🛠️ MODEL CONFIGURATION 🛠️
-# =========================
-
-MODEL_TABLE = {
-    # 1. Llama 3.1 8B Instruct
-    # MI25 VRAM budget: 16GB per GPU. With TP=2, model weights ~7.6 GiB + KV cache.
-    # Reduced from 64 seqs / 16K ctx to avoid MLP activation OOM (214 MiB gate_up_proj).
-    "meta-llama/Meta-Llama-3.1-8B-Instruct": {
-        "trust_remote": False,
-        "valid_tp": [2, 4],
-        "max_num_seqs": "24",
-        "max_tokens": "8192",
-        "ctx": "8192"
-    },
-
-    # 2. Qwen 3.5 9B (Native FP16)
-    "Qwen/Qwen3.5-9B": {
-        "trust_remote": True,
-        "valid_tp": [2, 4],
-        "max_num_seqs": "24",
-        "max_tokens": "8192",
-        "ctx": "8192",
-        "language_model_only": True
-    },
-
-    # 3. Qwen 3.5 27B (Native FP16)
-    "Qwen/Qwen3.5-27B": {
-        "trust_remote": True,
-        "valid_tp": [4],
-        "max_num_seqs": "16",
-        "max_tokens": "8192",
-        "ctx": "8192",
-        "language_model_only": True
-    },
-
-    # 4. Qwen 3.5 35B AWQ (VL Model forced to Language Only)
-    "cyankiwi/Qwen3.5-35B-A3B-AWQ-4bit": {
-        "trust_remote": True,
-        "valid_tp": [4],
-        "max_num_seqs": "16", 
-        "max_tokens": "8192",
-        "ctx": "8192",
-        "language_model_only": True
-    },
-
-    # 6. Gemma 4 26B AWQ
-    "cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit": {
-        "trust_remote": True,
-        "valid_tp": [4],
-        "max_num_seqs": "16", 
-        "max_tokens": "8192",
-        "ctx": "8192",
-        "language_model_only": True,
-        "enforce_eager": True
-    }
-}
-
-MODELS_TO_RUN = [
-    "meta-llama/Meta-Llama-3.1-8B-Instruct",
-    "Qwen/Qwen3.5-9B",
-    "Qwen/Qwen3.5-27B",
-    "cyankiwi/Qwen3.5-35B-A3B-AWQ-4bit",
-    "cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit"
-]
 
 # =========================
 # UTILS
@@ -281,8 +216,11 @@ def run_throughput(model, tp_size):
 
     try: 
         subprocess.run(cmd, check=True, env=env)
-    except: 
-        log(f"ERROR: Throughput failed {model}")
+    except subprocess.CalledProcessError as e:
+        log(f"ERROR: Throughput failed {model} (exit code {e.returncode})")
+    except Exception as e:
+        log(f"ERROR: Throughput failed {model}: {type(e).__name__}: {e}")
+        log(f"CMD was: {' '.join(cmd)}")
 
 
 
