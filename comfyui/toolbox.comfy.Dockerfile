@@ -13,6 +13,7 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git /opt/ComfyUI
 WORKDIR /opt/ComfyUI
 
 # Python dependencies
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN pip3 install --no-cache-dir -r requirements.txt && \
     pip3 install --no-cache-dir pillow opencv-python-headless imageio imageio-ffmpeg scipy "huggingface_hub[hf_transfer]" pyyaml websocket-client
 
@@ -26,10 +27,13 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
 WORKDIR /opt
 
 # Install utilities and banner
-COPY start_comfy.py 99-toolbox-banner.sh /opt/
-RUN chmod +x /opt/start_comfy.py /opt/99-toolbox-banner.sh && \
+COPY start_comfy.py 99-toolbox-banner.sh set_extra_paths.sh /opt/
+RUN chmod +x /opt/start_comfy.py /opt/99-toolbox-banner.sh /opt/set_extra_paths.sh && \
     ln -s /opt/start_comfy.py /usr/local/bin/start-comfy && \
     ln -s /opt/99-toolbox-banner.sh /etc/profile.d/99-toolbox-banner.sh
+
+# Relax permissions for Toolbox non-root users
+RUN chmod -R a+rwX /opt/ComfyUI
 
 # Memory fragmentation mitigation ENV for PyTorch 2.0+
 ENV PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"

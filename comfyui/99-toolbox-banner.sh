@@ -58,8 +58,15 @@ printf 'GPU    : %s\n\n' "$GPU"
 printf 'Repo   : https://github.com/kyuz0/ML-gfx906\n\n'
 printf 'Included Utilities:\n'
 printf '  - %-20s → %s\n' "start-comfy" "Interactive TUI launcher: Select GPU targets and VRAM tuning"
+printf '  - %-20s → %s\n' "set_extra_paths.sh" "Initialize host-mapping so your models survive container resets"
 echo
 printf 'Note: PyTorch CUDA Allocator expanded segments enabled for Vega fragmentation mitigations.\n\n'
+
+if [ ! -d "$HOME/comfy-models" ]; then
+  echo -e "\033[1;33m⚠️  TIP: ComfyUI Models are currently isolated inside this container!"
+  echo -e "   If the toolbox is rebuilt, your downloaded models will be DELETED."
+  echo -e "   Run '/opt/set_extra_paths.sh' now to permanently map them to your host OS.\033[0m\n"
+fi
 
 export PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
 export HSA_OVERRIDE_GFX_VERSION="9.0.0"

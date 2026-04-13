@@ -54,9 +54,6 @@ def clear_caches():
     print(f"Clearing cache at {cache_comfy}...", end="", flush=True)
     subprocess.run(["rm", "-rf", str(cache_comfy)], check=False)
     cache_comfy.mkdir(parents=True, exist_ok=True)
-    print(" Done.")
-    time.sleep(1)
-
 def configure_and_launch(gpu_count):
     current_gpu = "0"
     current_port = PORT
