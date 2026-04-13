@@ -22,7 +22,7 @@ if [[ -z "$HF" ]]; then
   exit 1
 fi
 
-mkdir -p "$MODEL_HOME"/{unet,text_encoders,vae}
+mkdir -p "$MODEL_HOME"/{diffusion_models,text_encoders,vae}
 
 dl() {
   local repo="$1" remote="$2" dest_dir="$3"
@@ -40,6 +40,17 @@ dl() {
       --repo-type model \
       --cache-dir "$HF_HOME" \
       --local-dir "$dest_dir"
+
+  # HuggingFace CLI retains the remote folder structure (e.g. split_files/text_encoders/...)
+  # We need to flatten it so ComfyUI finds them instantly inside the root category folder
+  if [[ "$remote" == */* ]]; then
+    find "$dest_dir" -type f -name "$filename" -exec mv {} "$dest_dir/" \; || true
+    # Remove the empty downloaded folder structure
+    local top_dir="${remote%%/*}"
+    if [ -d "$dest_dir/$top_dir" ]; then
+      rm -rf "$dest_dir/$top_dir"
+    fi
+  fi
 }
 
 echo ""
@@ -65,14 +76,14 @@ echo ""
 echo ">>> [3/4] Qwen-Image 2512 UNet (Q4_K_M GGUF, ~11.5 GB)"
 dl "unsloth/Qwen-Image-2512-GGUF" \
    "qwen-image-2512-Q4_K_M.gguf" \
-   "$MODEL_HOME/unet"
+   "$MODEL_HOME/diffusion_models"
 
 # --- Qwen-Image-Edit 2511 (image editing) ---
 echo ""
 echo ">>> [4/4] Qwen-Image-Edit 2511 UNet (Q4_K_M GGUF, ~11.5 GB)"
 dl "unsloth/Qwen-Image-Edit-2511-GGUF" \
    "qwen-image-edit-2511-Q4_K_M.gguf" \
-   "$MODEL_HOME/unet"
+   "$MODEL_HOME/diffusion_models"
 
 echo ""
 echo "============================================="

@@ -13,7 +13,7 @@ echo ">>> Building ComfyUI Toolbox: ${TOOLBOX_TAG}"
 
 echo ">>> Staging TUI launcher scripts into build context..."
 mkdir -p ./build-context
-cp start_comfy.py 99-toolbox-banner.sh set_extra_paths.sh ./build-context/
+cp start_comfy.py 99-toolbox-banner.sh set_extra_paths.sh get_qwen_workflows.sh ./build-context/
 cp -r workflows ./build-context/
 
 podman build -t "${TOOLBOX_TAG}" \

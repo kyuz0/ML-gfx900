@@ -15,6 +15,7 @@ comfyui:
 
     checkpoints: checkpoints
     text_encoders: text_encoders
+    clip: text_encoders
     vae: vae
     diffusion_models: diffusion_models
     unet: unet
