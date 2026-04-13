@@ -28,6 +28,8 @@ WORKDIR /opt
 
 # Install utilities and banner
 COPY start_comfy.py 99-toolbox-banner.sh set_extra_paths.sh /opt/
+RUN mkdir -p /opt/ComfyUI/user/default/workflows/
+COPY workflows/*.json /opt/ComfyUI/user/default/workflows/
 RUN chmod +x /opt/start_comfy.py /opt/99-toolbox-banner.sh /opt/set_extra_paths.sh && \
     ln -s /opt/start_comfy.py /usr/local/bin/start-comfy && \
     ln -s /opt/99-toolbox-banner.sh /etc/profile.d/99-toolbox-banner.sh
