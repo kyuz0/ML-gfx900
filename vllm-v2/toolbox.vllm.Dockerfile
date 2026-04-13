@@ -145,6 +145,6 @@ COPY start_vllm.py models.py run_vllm_bench_mi25.py 99-toolbox-banner.sh /opt/
 RUN chmod +x /opt/start_vllm.py /opt/99-toolbox-banner.sh && \
     ln -s /opt/start_vllm.py /usr/local/bin/start-vllm && \
     ln -s /opt/run_vllm_bench_mi25.py /usr/local/bin/run-vllm-bench && \
-    echo "source /opt/99-toolbox-banner.sh" >> /root/.bashrc
+    ln -s /opt/99-toolbox-banner.sh /etc/profile.d/99-toolbox-banner.sh
 
 CMD ["/bin/bash"]
