@@ -138,7 +138,7 @@ RUN sed -i 's/BLOCK_M = 128/BLOCK_M = 64  # PATCHED for Vega10 LDS limit/' \
     /usr/local/lib/python3.12/dist-packages/vllm/v1/attention/ops/prefix_prefill.py
 
 # Install utility packages
-RUN apt-get update && apt-get install -y dialog vim && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y dialog vim pciutils && rm -rf /var/lib/apt/lists/*
 
 # Install toolbox scripts
 COPY start_vllm.py models.py run_vllm_bench_mi25.py 99-toolbox-banner.sh /opt/
